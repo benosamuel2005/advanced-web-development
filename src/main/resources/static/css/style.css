@@ -1,0 +1,136 @@
+
+/* Shared Trainer Page Styling */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 40px 24px;
+    background: #f4f6f9;
+    color: #263445;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.list-page .container {
+    max-width: 1100px;
+}
+
+.page-header {
+    margin-bottom: 28px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.subtitle {
+    margin: 6px 0 0;
+    color: #718096;
+    font-size: 14px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.04);
+    overflow: hidden;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 17px 22px;
+    border-bottom: 1px solid #e5eaf0;
+}
+
+td {
+    padding: 17px 22px;
+    border-bottom: 1px solid #edf0f4;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #f8fbff;
+}
+
+.course-id {
+    color: #94a3b8;
+}
+
+.course-name {
+    font-weight: 600;
+    color: #263445;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: #94a3b8;
+}
+
+.footer {
+    margin-top: 22px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+@media (max-width: 650px) {
+    body {
+        padding: 20px 12px;
+    }
+}
+
+/* Shared Navigation Bar */
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #e5eaf0;
+    border-radius: 10px;
+}
+
+.site-nav .nav-link {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.site-nav .nav-link:hover {
+    background: #f1f5f9;
+}
+
+.site-nav .nav-link.active {
+    background: #eff6ff;
+    color: #2563eb;
+}

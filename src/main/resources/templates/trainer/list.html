@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Trainers</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body class="list-page">
+
+<div class="container">
+
+    <!-- Shared Navigation -->
+    <div th:replace="~{fragments/navigation :: navigation(active='trainers')}"></div>
+
+    <!-- Page Heading -->
+    <div class="page-header">
+        <div>
+            <h1>Trainers</h1>
+            <p class="subtitle">
+                View the trainers available for course delivery.
+            </p>
+        </div>
+    </div>
+
+    <!-- Trainer Table -->
+    <div class="card">
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Trainer Name</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="trainer : ${trainers}">
+
+                    <td class="course-id"
+                        th:text="${trainer.id}">
+                    </td>
+
+                    <td class="course-name"
+                        th:text="${trainer.name}">
+                    </td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(trainers)}">
+                    <td colspan="2"
+                        class="empty-state">
+                        No trainers found.
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Advanced Web Development - Course Management Demo
+    </div>
+
+</div>
+
+</body>
+</html>

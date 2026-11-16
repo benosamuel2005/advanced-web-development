@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<nav class="site-nav" th:fragment="navigation(active)">
+
+    <a th:href="@{/course-management}"
+       class="nav-link"
+       th:classappend="${active == 'courses'} ? ' active' : ''">
+        Courses
+    </a>
+
+    <a th:href="@{/trainers}"
+       class="nav-link"
+       th:classappend="${active == 'trainers'} ? ' active' : ''">
+        Trainers
+    </a>
+
+</nav>
+
+</body>
+</html>

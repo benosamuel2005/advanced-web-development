@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Course</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 24px;
+            background: #f4f6f9;
+            color: #263445;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .card {
+            margin-top: 28px;
+            padding: 32px;
+            background: white;
+            border: 1px solid #e5eaf0;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0,0,0,.04);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            display: block;
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d6deea;
+            border-radius: 7px;
+            background: white;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+        }
+
+        .hint {
+            margin-top: 6px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 12px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #edf0f4;
+        }
+
+        .btn {
+            padding: 11px 20px;
+            border-radius: 7px;
+            border: 1px solid #d6deea;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .primary {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+
+        .primary:hover {
+            background: #1d4ed8;
+        }
+
+        .secondary {
+            background: white;
+            color: #475569;
+        }
+
+        .secondary:hover {
+            background: #f1f5f9;
+        }
+
+        .footer {
+            margin-top: 22px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Shared Navigation -->
+    <div th:replace="~{fragments/navigation :: navigation(active='courses')}"></div>
+
+    <!-- Page Heading -->
+    <h1>Edit Course</h1>
+
+    <p class="subtitle">
+        Update the course details and assigned trainer.
+    </p>
+
+    <!-- Edit Course Form -->
+    <div class="card">
+
+        <form th:action="@{/course-management/{id}(id=${courseId})}"
+              th:object="${courseForm}"
+              method="post">
+
+            <!-- Course Name -->
+            <div class="form-group">
+
+                <label for="name">
+                    Course Name
+                </label>
+
+                <input
+                        id="name"
+                        type="text"
+                        th:field="*{name}"
+                        required>
+
+                <div class="hint">
+                    Enter a descriptive name for the course.
+                </div>
+
+                <div class="error"
+                     th:if="${#fields.hasErrors('name')}"
+                     th:errors="*{name}">
+                </div>
+
+            </div>
+
+            <!-- Capacity -->
+            <div class="form-group">
+
+                <label for="capacity">
+                    Capacity
+                </label>
+
+                <input
+                        id="capacity"
+                        type="number"
+                        min="1"
+                        th:field="*{capacity}"
+                        required>
+
+                <div class="hint">
+                    Maximum number of participants allowed.
+                </div>
+
+                <div class="error"
+                     th:if="${#fields.hasErrors('capacity')}"
+                     th:errors="*{capacity}">
+                </div>
+
+            </div>
+
+            <!-- Trainer Selection -->
+            <div class="form-group">
+
+                <label for="trainerId">
+                    Assigned Trainer
+                </label>
+
+                <select
+                        id="trainerId"
+                        th:field="*{trainerId}">
+
+                    <option value="">
+                        Select a trainer
+                    </option>
+
+                    <option
+                            th:each="trainer : ${trainers}"
+                            th:value="${trainer.id}"
+                            th:text="${trainer.name}">
+                    </option>
+
+                </select>
+
+                <div class="hint">
+                    Select the trainer responsible for this course.
+                </div>
+
+                <div class="error"
+                     th:if="${#fields.hasErrors('trainerId')}"
+                     th:errors="*{trainerId}">
+                </div>
+
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions">
+
+                <a th:href="@{/course-management}"
+                   class="btn secondary">
+                    Cancel
+                </a>
+
+                <button
+                        class="btn primary"
+                        type="submit">
+                    Update Course
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Advanced Web Development - Course Management Demo
+    </div>
+
+</div>
+
+</body>
+</html>
